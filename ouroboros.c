@@ -15,7 +15,7 @@ static void quine(char *s) {
         }
         printf("%c", *s++);
     }
-    printf("\"\n    );\n}\n");
+    printf("\"\n    );\n    return 0;\n}\n");
 }
 
 int main() {
@@ -37,10 +37,11 @@ static void quine(char *s) {\n\
         }\n\
         printf(\"%c\", *s++);\n\
     }\n\
-    printf(\"\\\"\\n    );\\n}\\n\");\n\
+    printf(\"\\\"\\n    );\\n    return 0;\\n}\\n\");\n\
 }\n\
 \n\
 int main() {\n\
     quine"
     );
+    return 0;
 }
