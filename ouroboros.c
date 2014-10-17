@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 static void quine(char *s) {
@@ -25,7 +24,6 @@ static void quine(char *s) {
 int main() {
     quine("\
 #include <stdio.h>\n\
-#include <stdlib.h>\n\
 #include <string.h>\n\
 \n\
 static void quine(char *s) {\n\
