@@ -4,30 +4,22 @@
 
 static void quine(char *s) {
     int len = strlen(s);
-    char *ss = malloc(len * 4);
-    int i, j = 0;
+    int i;
     
+    printf("%s(\"\\\n", s);
     for (i = 0; i < len; ++i) {
         switch (s[i]) {
             case '"':
             case '\\':
-                ss[j++] = '\\';
+                printf("\\");
                 break;
             case '\n':
-                ss[j++] = '\\';
-                ss[j++] = 'n';
-                ss[j++] = '\\';
+                printf("\\n\\");
                 break;
         }
-        ss[j++] = s[i];
+        printf("%c", s[i]);
     }
-    ss[j] = '\0';
-    
-    printf("%s(\"\\\n", s);
-    printf("%s\"\n", ss);
-    printf("    );\n    return 0;\n}\n");
-    
-    free(ss);
+    printf("\"\n    );\n    return 0;\n}\n");
 }
 
 int main() {
@@ -38,30 +30,22 @@ int main() {
 \n\
 static void quine(char *s) {\n\
     int len = strlen(s);\n\
-    char *ss = malloc(len * 4);\n\
-    int i, j = 0;\n\
+    int i;\n\
     \n\
+    printf(\"%s(\\\"\\\\\\n\", s);\n\
     for (i = 0; i < len; ++i) {\n\
         switch (s[i]) {\n\
             case '\"':\n\
             case '\\\\':\n\
-                ss[j++] = '\\\\';\n\
+                printf(\"\\\\\");\n\
                 break;\n\
             case '\\n':\n\
-                ss[j++] = '\\\\';\n\
-                ss[j++] = 'n';\n\
-                ss[j++] = '\\\\';\n\
+                printf(\"\\\\n\\\\\");\n\
                 break;\n\
         }\n\
-        ss[j++] = s[i];\n\
+        printf(\"%c\", s[i]);\n\
     }\n\
-    ss[j] = '\\0';\n\
-    \n\
-    printf(\"%s(\\\"\\\\\\n\", s);\n\
-    printf(\"%s\\\"\\n\", ss);\n\
-    printf(\"    );\\n    return 0;\\n}\\n\");\n\
-    \n\
-    free(ss);\n\
+    printf(\"\\\"\\n    );\\n    return 0;\\n}\\n\");\n\
 }\n\
 \n\
 int main() {\n\
