@@ -2,12 +2,9 @@
 #include <string.h>
 
 static void quine(char *s) {
-    int len = strlen(s);
-    int i;
-    
     printf("%s(\"\\\n", s);
-    for (i = 0; i < len; ++i) {
-        switch (s[i]) {
+    while (*s != '\0') {
+        switch (*s) {
             case '"':
             case '\\':
                 printf("\\");
@@ -16,7 +13,8 @@ static void quine(char *s) {
                 printf("\\n\\");
                 break;
         }
-        printf("%c", s[i]);
+        printf("%c", *s);
+        ++s;
     }
     printf("\"\n    );\n    return 0;\n}\n");
 }
@@ -27,12 +25,9 @@ int main() {
 #include <string.h>\n\
 \n\
 static void quine(char *s) {\n\
-    int len = strlen(s);\n\
-    int i;\n\
-    \n\
     printf(\"%s(\\\"\\\\\\n\", s);\n\
-    for (i = 0; i < len; ++i) {\n\
-        switch (s[i]) {\n\
+    while (*s != '\\0') {\n\
+        switch (*s) {\n\
             case '\"':\n\
             case '\\\\':\n\
                 printf(\"\\\\\");\n\
@@ -41,7 +36,8 @@ static void quine(char *s) {\n\
                 printf(\"\\\\n\\\\\");\n\
                 break;\n\
         }\n\
-        printf(\"%c\", s[i]);\n\
+        printf(\"%c\", *s);\n\
+        ++s;\n\
     }\n\
     printf(\"\\\"\\n    );\\n    return 0;\\n}\\n\");\n\
 }\n\
